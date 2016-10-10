@@ -1,0 +1,22 @@
+.carousel-item-wrap {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  left: 0;
+  transition: left 1s;
+  padding: 0;
+  margin: 0;
+}
+
+.carousel-item {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+}
+
+.carousel-img{
+  display: block;
+  height: 100%;
+  width: auto;
+  margin: auto;
+}
