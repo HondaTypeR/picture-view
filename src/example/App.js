@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
-import FullpageImage from './FullpageImage';
+import FullpageImage from '../FullpageImage';
 import p1 from './imgs/1.jpg';
 import p2 from './imgs/2.jpg';
 
@@ -26,7 +26,7 @@ class App extends Component {
       picIndex: index,
     });
   }
-f425a66
+
   render() {
     return (
       <div className="App">

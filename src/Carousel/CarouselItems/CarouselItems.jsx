@@ -30,7 +30,7 @@ class CarouselItem extends Component {
           <li className="carousel-item" key={`item-${index}`} style={{
             width: `${100 / count}%`
           }}>
-            <img src={item} alt={`img-${index}`} className="carousel-img" />
+            <img draggable="false" src={item} alt={`img-${index}`} className="carousel-img" />
           </li>
         ))}
       </ul>

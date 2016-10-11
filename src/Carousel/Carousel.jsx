@@ -11,19 +11,27 @@ class Carousel extends Component {
     items: PropTypes.array,
     width: PropTypes.string,
     height: PropTypes.string,
+    swipe: PropTypes.bool,
+    dots: PropTypes.dots,
   };
 
   static defaultProps = {
     dots: false,
+    swipe: false,
   };
 
   constructor(props, context) {
     super(props, context);
     this.state = {
       playIndex: 0,
+      dragging: false,
+      touchObject: {},
     };
     this.turnSlick = this.turnSlick.bind(this);
+    this.swipeStart = this.swipeStart.bind(this);
+    this.swipeEnd = this.swipeEnd.bind(this);
   }
+
 
   // 切换轮播图
   turnSlick(n) {
@@ -48,6 +56,51 @@ class Carousel extends Component {
     }
   }
 
+  getPosX(e) {
+    return (e.touches !== undefined) ? e.touches[0].pageX : e.clientX;
+  }
+
+  swipeStart(e) {
+    if ((this.props.swipe === false) || ('ontouchend' in document && this.props.swipe === false)) {
+      return;
+    }
+    const posX = this.getPosX(e);
+
+    this.setState({
+      dragging: true,
+      touchObject: {
+        startX: posX,
+      }
+    });
+  }
+
+  swipeEnd(e) {
+    const startX = this.state.touchObject.startX;
+    const endX = this.getPosX(e);
+    const swipeLength = Math.round(Math.sqrt(Math.pow(endX - startX, 2)));
+    if (!this.state.dragging || swipeLength < 200) {
+      e.preventDefault();
+      return;
+    }
+    const direction = endX - startX > 0 ? 'left' : 'right';
+    console.log(swipeLength, direction);
+    switch(direction) {
+      case 'left':
+        this.turnSlick(1);
+        break;
+      case 'right':
+        this.turnSlick(-1);
+        break;
+      default:
+        return;
+    }
+
+    this.setState({
+      dragging: false,
+      touchObject: {}
+    });
+  }
+
   render() {
     const dotsNode = <CarouselDots
       index={this.state.playIndex}
@@ -61,6 +114,8 @@ class Carousel extends Component {
           width: this.props.width,
           height: this.props.height,
         }}
+        onMouseDown={this.swipeStart}
+        onMouseUp={this.swipeEnd}
       >
         <CarouselItems
           index={this.state.playIndex}

@@ -1,8 +1,6 @@
 import './style.css';
 import React, {Component, PropTypes} from 'react';
 import Carousel from '../Carousel';
-import p1 from '../imgs/1.jpg';
-import p2 from '../imgs/2.jpg';
 
 
 class FullpageImage extends Component {
@@ -25,7 +23,6 @@ class FullpageImage extends Component {
   }
 
   render() {
-    const items = [p1, p2];
     return (
       <div
         style={{
@@ -38,7 +35,7 @@ class FullpageImage extends Component {
               width="100%"
               height="100%"
               arrow={true}
-              items={items}
+              items={this.props.pictures}
               ref="carousel"
             />
           </div>
