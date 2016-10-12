@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
-import FullpageImage from '../FullpageImage';
+import FullpageImage from '../../../src/FullpageImage';
 import p1 from './imgs/1.jpg';
 import p2 from './imgs/2.jpg';
 

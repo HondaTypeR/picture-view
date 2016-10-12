@@ -1,8 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './example/App';
+import React from 'react'
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-);
+export default React.createClass({
+  render() {
+    return <div>
+      <h2>Welcome to React components</h2>
+    </div>
+  }
+})
