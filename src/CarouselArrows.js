@@ -1,5 +1,4 @@
 import React, {Component, PropTypes} from 'react';
-import './style.css';
 
 class CarouselArrows extends Component {
   static propTypes = {
@@ -15,6 +14,19 @@ class CarouselArrows extends Component {
     this.state = {};
   }
 
+  getArrowStyles(pos) {
+    return {
+      position: 'absolute',
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      top: '50%',
+      width: '40px',
+      height: '60px',
+      marginTop: '-20px',
+      cursor: 'pointer',
+      left: pos === 'left' ? '0' : 'none',
+      right: pos === 'right' ? '0' : 'none',
+    }
+  }
 
 
   render() {
@@ -23,7 +35,7 @@ class CarouselArrows extends Component {
         style={this.props.styles}
         className='carousel-arrows-wrap'
       >
-        <div className="carousel-arrow left" onClick={this.props.onClick.bind(this, -1)}>
+        <div style={this.getArrowStyles('left')} onClick={this.props.onClick.bind(this, -1)}>
           <svg width="100%" height="100%">
             <polyline
               points="30 10 10 30 30 50"
@@ -35,7 +47,7 @@ class CarouselArrows extends Component {
             />
           </svg>
         </div>
-        <div className="carousel-arrow right" onClick={this.props.onClick.bind(this, 1)}>
+        <div style={this.getArrowStyles('right')} onClick={this.props.onClick.bind(this, 1)}>
           <svg width="100%" height="100%">
             <polyline
               points="14 10 34 30 14 50"

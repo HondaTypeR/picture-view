@@ -1,4 +1,3 @@
-import './style.css';
 import React, { Component, PropTypes } from 'react';
 import CarouselArrows from './CarouselArrows';
 import CarouselDots from './CarouselDots';
@@ -11,13 +10,13 @@ class Carousel extends Component {
     items: PropTypes.array,
     width: PropTypes.string,
     height: PropTypes.string,
-    swipe: PropTypes.bool,
-    dots: PropTypes.dots,
+    isSwipe: PropTypes.bool,
+    dots: PropTypes.bool,
   };
 
   static defaultProps = {
     dots: false,
-    swipe: false,
+    isSwipe: false,
   };
 
   constructor(props, context) {
@@ -26,10 +25,12 @@ class Carousel extends Component {
       playIndex: 0,
       dragging: false,
       touchObject: {},
+      offsetLeft: 0,
     };
     this.turnSlick = this.turnSlick.bind(this);
     this.swipeStart = this.swipeStart.bind(this);
     this.swipeEnd = this.swipeEnd.bind(this);
+    this.dragging = this.dragging.bind(this);
   }
 
 
@@ -61,7 +62,7 @@ class Carousel extends Component {
   }
 
   swipeStart(e) {
-    if ((this.props.swipe === false) || ('ontouchend' in document && this.props.swipe === false)) {
+    if ((this.props.isSwipe === false) || ('ontouchend' in document && this.props.swipe === false)) {
       return;
     }
     const posX = this.getPosX(e);
@@ -80,28 +81,38 @@ class Carousel extends Component {
     const swipeLength = Math.round(Math.sqrt(Math.pow(endX - startX, 2)));
     if (!this.state.dragging || swipeLength < 200) {
       e.preventDefault();
-      return;
+    } else {
+      const direction = endX - startX > 0 ? 'left' : 'right';
+      switch(direction) {
+        case 'left':
+          this.turnSlick(1);
+          break;
+        case 'right':
+          this.turnSlick(-1);
+          break;
+        default:
+          break;
+      }
     }
-    const direction = endX - startX > 0 ? 'left' : 'right';
-    console.log(swipeLength, direction);
-    switch(direction) {
-      case 'left':
-        this.turnSlick(1);
-        break;
-      case 'right':
-        this.turnSlick(-1);
-        break;
-      default:
-        return;
-    }
-
     this.setState({
       dragging: false,
-      touchObject: {}
+      touchObject: {},
+      offsetLeft: 0,
     });
   }
 
+  dragging(e) {
+    const curX = this.getPosX(e);
+    const dragLength = curX - this.state.touchObject.startX;
+    const carouselLen  = document.querySelector('.carousel-item-wrap').offsetWidth;
+    this.setState({
+      offsetLeft: dragLength / carouselLen * 100,
+    });
+    console.log(this.state.offsetLeft);
+  }
+
   render() {
+    const isSwipe = this.props.isSwipe;
     const dotsNode = <CarouselDots
       index={this.state.playIndex}
       count={this.props.items.length}
@@ -113,13 +124,18 @@ class Carousel extends Component {
         style={{
           width: this.props.width,
           height: this.props.height,
+          overflow: 'hidden',
+          position: 'relative',
         }}
-        onMouseDown={this.swipeStart}
-        onMouseUp={this.swipeEnd}
+        onMouseDown={ isSwipe ? this.swipeStart : null}
+        onMouseUp={ isSwipe ? this.swipeEnd : null}
+        onMouseMove={isSwipe && this.state.dragging ? this.dragging : null}
+        onMouseLeave={isSwipe && this.state.dragging ? this.swipeEnd: null}
       >
         <CarouselItems
           index={this.state.playIndex}
           items={this.props.items}
+          offsetLeft={this.state.offsetLeft}
         />
         {this.props.dots ? dotsNode : null}
         <CarouselArrows onClick={this.turnSlick} />
