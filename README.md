@@ -20,3 +20,6 @@ npm start
 + toggleView: func, 控制picView的方法
 + pictures: array, 图片数组
 + items: array, 图片地址数组
++ isSwipe: bool, 是否可拖动, 默认false
++ hasArrow: bool, 是否显示箭头,默认true
++ hasDot: bool, 是否显示点，默认false

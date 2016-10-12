@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import CarouselArrows from './CarouselArrows';
 import CarouselDots from './CarouselDots';
 import CarouselItems from './CarouselItems';
+import reactDom from 'react-dom';
 
 class Carousel extends Component {
   static propTypes = {
@@ -11,11 +12,13 @@ class Carousel extends Component {
     width: PropTypes.string,
     height: PropTypes.string,
     isSwipe: PropTypes.bool,
-    dots: PropTypes.bool,
+    hasDot: PropTypes.bool,
+    hasArrow: PropTypes.bool,
   };
 
   static defaultProps = {
-    dots: false,
+    hasDot: false,
+    hasArrow: true,
     isSwipe: false,
   };
 
@@ -104,11 +107,10 @@ class Carousel extends Component {
   dragging(e) {
     const curX = this.getPosX(e);
     const dragLength = curX - this.state.touchObject.startX;
-    const carouselLen  = document.querySelector('.carousel-item-wrap').offsetWidth;
+    const carouselLen  = reactDom.findDOMNode(this.refs.carouselitem).offsetWidth;
     this.setState({
       offsetLeft: dragLength / carouselLen * 100,
     });
-    console.log(this.state.offsetLeft);
   }
 
   render() {
@@ -136,9 +138,10 @@ class Carousel extends Component {
           index={this.state.playIndex}
           items={this.props.items}
           offsetLeft={this.state.offsetLeft}
+          ref="carouselitem"
         />
-        {this.props.dots ? dotsNode : null}
-        <CarouselArrows onClick={this.turnSlick} />
+        {this.props.hasDot ? dotsNode : null}
+        {this.props.hasArrow ? <CarouselArrows onClick={this.turnSlick} /> : null }
       </div>
     );
   }

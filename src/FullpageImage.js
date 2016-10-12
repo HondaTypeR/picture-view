@@ -9,6 +9,9 @@ class FullpageImage extends Component {
     picIndex: PropTypes.number,
     pictures: PropTypes.array,
     toggleView: PropTypes.func,
+    isSwipe: PropTypes.bool,
+    hasDot: PropTypes.bool,
+    hasArrow: PropTypes.bool,
   };
 
   static defaultProps = {};
@@ -73,10 +76,11 @@ class FullpageImage extends Component {
             <Carousel
               width="100%"
               height="100%"
-              arrow={true}
               items={this.props.pictures}
               ref="carousel"
-              swipe
+              isSwipe={this.props.isSwipe}
+              hasDot={this.props.hasDot}
+              hasArrow={this.props.hasArrow}
             />
           </div>
         </div>

@@ -41,6 +41,9 @@ class App extends Component {
           picIndex={this.state.picIndex}
           pictures={this.state.pictures}
           toggleView={this.toggleView.bind(this)}
+          isSwipe={true}
+          hasDot={!!true}
+          hasArrow={true}
           />
       </div>
     );
