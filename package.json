@@ -1,15 +1,11 @@
 {
-  "homepage": "https://github.com/vv13/picture-view",
-  "author": {
-    "name": "vv13",
-    "url": "https://vv13.cn"
-  },
+  "homepage": "",
+  "author": "",
   "name": "picture-view",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "full page picture view, created by react.",
   "main": "lib/index.js",
   "jsnext:main": "es/index.js",
-
   "module": "es/index.js",
   "files": [
     "css",
@@ -34,8 +30,6 @@
     "react": "^15.3.2",
     "react-dom": "^15.3.2"
   },
-  "author": "",
-  "homepage": "",
   "license": "MIT",
   "repository": "",
   "keywords": [
