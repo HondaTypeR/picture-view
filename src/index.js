@@ -8,7 +8,7 @@ class FullpageImage extends Component {
     picView: PropTypes.bool,
     picIndex: PropTypes.number,
     pictures: PropTypes.array,
-    toggleView: PropTypes.func,
+    toggleView: PropTypes.func.isRequired,
     isSwipe: PropTypes.bool,
     hasDot: PropTypes.bool,
     hasArrow: PropTypes.bool,

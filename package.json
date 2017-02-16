@@ -1,9 +1,15 @@
 {
-  "name": "my-component",
+  "homepage": "https://github.com/vv13/picture-view",
+  "author": {
+    "name": "vv13",
+    "url": "https://vv13.cn"
+  },
+  "name": "picture-view",
   "version": "1.0.0",
-  "description": "my-component React component",
+  "description": "full page picture view, created by react.",
   "main": "lib/index.js",
   "jsnext:main": "es/index.js",
+
   "module": "es/index.js",
   "files": [
     "css",

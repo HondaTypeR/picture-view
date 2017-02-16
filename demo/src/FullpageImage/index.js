@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
-import FullpageImage from '../../../src/FullpageImage';
+import FullpageImage from '../../../src';
 import p1 from './imgs/1.jpg';
 import p2 from './imgs/2.jpg';
 
@@ -32,7 +32,7 @@ class App extends Component {
       <div className="App">
         {
           this.state.pictures.map((pic, index) => (
-            <img alt={`img-${index}`} src={pic} width="400" height="400" key={`img-${index}`} onClick={this.toggleIndex.bind(this, index)}/>
+            <img alt={`img-${index}`} src={pic} width="400" height="400" key={`img-${index}`} onClick={() => this.toggleIndex(index)}/>
           ))
         }
 
@@ -40,10 +40,10 @@ class App extends Component {
           picView={this.state.picView}
           picIndex={this.state.picIndex}
           pictures={this.state.pictures}
-          toggleView={this.toggleView.bind(this)}
-          isSwipe={true}
-          hasDot={!!true}
-          hasArrow={true}
+          toggleView={() => this.toggleView()}
+          isSwipe
+          hasDot
+          hasArrow
           />
       </div>
     );
