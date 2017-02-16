@@ -1,6 +1,6 @@
 {
-  "homepage": "",
-  "author": "",
+  "homepage": "https://github.com/vv13/picture-view",
+  "author": "vv13",
   "name": "picture-view",
   "version": "1.0.1",
   "description": "full page picture view, created by react.",
@@ -33,6 +33,8 @@
   "license": "MIT",
   "repository": "",
   "keywords": [
-    "react-component"
+    "picture",
+    "fullpage",
+    "photo"
   ]
 }

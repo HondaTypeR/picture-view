@@ -1,5 +1,5 @@
 ## 简介
-图片查看组件，用react构建，在线demo：[vv13.cn/picture-view](vv13.cn/picture-view)
+图片查看组件，用react构建，在线demo：[vv13.cn/picture-view](https://vv13.cn/picture-view)
 
 ## 如何安装
 npm install --save picture-view
