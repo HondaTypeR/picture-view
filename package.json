@@ -2,7 +2,7 @@
   "homepage": "https://github.com/vv13/picture-view",
   "author": "vv13",
   "name": "picture-view",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "full page picture view, created by react.",
   "main": "lib/index.js",
   "jsnext:main": "es/index.js",
